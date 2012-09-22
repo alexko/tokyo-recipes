@@ -8,4 +8,4 @@ rport=$3 # repl port
 
 tcrmgr ext -port ${tport:=1978} ${thost:=localhost} repl ${rport:=1999} &
 sleep 0.1
-exec nc ${thost:=localhost} ${rport:=1999}
+exec nc ${thost:=localhost} ${rport#-}

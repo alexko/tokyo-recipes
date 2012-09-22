@@ -51,7 +51,9 @@ end
 function repl(port, prompt)
    require "socket"
    if not prompt or prompt=="" then prompt = "'th_' .. _thid .. '> '" end
-   local server = assert(socket.bind("127.0.0.1", tonumber(port) or 1999))
+   local host, port = "127.0.0.1", tonumber(port)
+   if port and port<0 then port=-port; host = "*" end
+   local server = assert(socket.bind(host, port or 1999))
    while true do
       local client = server:accept()
       client:settimeout(10)
